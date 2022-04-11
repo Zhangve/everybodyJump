@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="jquery-3.4.1.js"></script>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script src="game.js"></script>
+    <link rel="stylesheet" href="game.css">
+</head>
+<body>
+    <h2 id="test"></h2>
+<img  src="img/跳1.png"  class="people">
+</body>
+<script>
+var mark=0;
+var pause=0;
+function isTouch(){
+    var fireBowl=document.getElementsByClassName("fire-bowl")[0];
+    var fireBowl_l=fireBowl.offsetLeft;
+    var fireBowl_r=fireBowl.offsetLeft+fireBowl.offsetWidth;
+    var fireBowl_t=fireBowl.offsetTop;
+    var test=document.getElementById("test");
+    test.innerHTML=mark+"分";
+
+    var people=document.getElementsByClassName("people")[0];
+    var people_l=people.offsetLeft;
+    var people_r=people.offsetLeft+people.offsetWidth;
+    var people_b=people.offsetTop+people.offsetHeight;
+    if(people_r>=fireBowl_l && people_l<=fireBowl_r && people_b>=fireBowl_t){
+        $(".people").hide(); 
+        $(".fire-bowl").hide();
+        pause=1;
+    }
+}
+function fire_maker(){
+    var action=0;
+    var fire=document.createElement("img");
+    fire.src="img/火盆.png";
+    fire.className='fire-bowl';
+    document.body.appendChild(fire);
+    setInterval(function(){
+        isTouch();
+        if(pause==0){
+            action=action+50;
+            $('.fire-bowl').css("right",action+"px");
+            if(action==1300)
+            {
+                action=0;
+                mark=mark+1;
+            }
+        }
+    },30);
+};
+
+function fire_loop(){
+    setInterval(fire_maker(), 5000);
+}
+
+fire_loop();
+</script>
+</html>
