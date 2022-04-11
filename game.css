@@ -1,0 +1,16 @@
+.people{
+    position: fixed;
+    top: 400px;
+    left: 500px;
+    z-index: 2;
+}
+.test{
+    height: 1000px;
+    width: 1500px;
+}
+.fire-bowl{
+    position: fixed;
+    top:450px;
+    right: 0;
+    z-index: 1;
+}
